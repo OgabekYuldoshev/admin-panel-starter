@@ -1,4 +1,4 @@
-import { Group, Image, Text, Title } from '@mantine/core';
+import { Group, Image, Title } from '@mantine/core';
 
 export interface AppLogoProps {
     title?: string,
