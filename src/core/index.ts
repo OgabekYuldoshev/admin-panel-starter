@@ -1,1 +1,1 @@
-export * from "./create-admin-builder";
+export * from "./admin-app";
