@@ -1,16 +1,22 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
-
-import { MantineProvider } from "@mantine/core";
-import { App } from "./App.tsx";
+import { createAdminBuilder } from "./core/create-admin-builder";
 
 const rootElement = document.getElementById("root") as HTMLElement;
 
+const { App } = createAdminBuilder({
+	ui: {
+		
+	},
+	resources:{
+		translations: {
+			label: "Translations",
+		}
+	}
+})
+
 createRoot(rootElement).render(
 	<StrictMode>
-		<MantineProvider>
-			<App />
-		</MantineProvider>
+		<App />
 	</StrictMode>
 );
