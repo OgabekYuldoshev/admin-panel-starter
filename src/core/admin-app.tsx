@@ -3,6 +3,8 @@ import { ThemeProvider } from "./components/theme-provider";
 import { AppStateContext, createAppState } from "./state";
 import type { AppConfig, DefaultServices } from "./config";
 import { RouterProvider } from "react-router";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./query-client";
 
 export function AdminApp<TServices extends DefaultServices>({
 	appConfig,
@@ -14,7 +16,9 @@ export function AdminApp<TServices extends DefaultServices>({
 	return (
 		<AppStateContext.Provider value={state}>
 			<ThemeProvider>
-				<RouterProvider router={state.router} />
+				<QueryClientProvider client={queryClient}>
+					<RouterProvider router={state.router} />
+				</QueryClientProvider>
 			</ThemeProvider>
 		</AppStateContext.Provider>
 	);

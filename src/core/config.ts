@@ -1,3 +1,6 @@
+import type { ZodSchema } from "zod";
+import type { ListResponse } from "./resource/utils";
+
 export type ServiceConfig = {
   baseURL: string;
   headers: Record<string, string>;
@@ -12,6 +15,30 @@ export type ResourceConfig<
   hasSidebar?: boolean;
   api: {
     service: keyof TServices & string;
+    actions: {
+      create: {
+        url: string;
+        payload?: ZodSchema;
+        response: ZodSchema;
+      };
+      update: {
+        url: string;
+        payload?: ZodSchema;
+        response: ZodSchema;
+      };
+      delete: {
+        url: string;
+      };
+      get: {
+        url: string;
+        response: ZodSchema;
+      };
+      list: {
+        url: string;
+        response: ZodSchema;
+        requestTransform?: (payload: any) => ListResponse<any>;
+      };
+    };
   };
 };
 

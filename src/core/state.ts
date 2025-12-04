@@ -1,10 +1,7 @@
 import axios, { type AxiosInstance } from "axios";
 import { createContext, useContext } from "react";
 import type { AppConfig, DefaultServices, ResourceConfig } from "./config";
-import {
-  createResource,
-  type Resource,
-} from "./components/resource/create-resource";
+import { createResource, type Resource } from "./resource/resource";
 import { createRouter } from "./router";
 
 export function createAppState<TServices extends DefaultServices>(
@@ -22,7 +19,11 @@ export function createAppState<TServices extends DefaultServices>(
   )) {
     resources.set(
       resourceKey,
-      createResource(resourceKey, resourceConfig as ResourceConfig)
+      createResource({
+        resourceKey,
+        resourceConfig: resourceConfig as ResourceConfig,
+        services,
+      })
     );
   }
 
@@ -32,6 +33,20 @@ export function createAppState<TServices extends DefaultServices>(
     services,
     resources,
     router: createRouter(routes),
+    getResource: (resourceKey: string) => {
+      const resource = resources.get(resourceKey);
+      if (!resource) {
+        throw new Error(`Resource ${resourceKey} not found`);
+      }
+      return resource;
+    },
+    getService: (serviceKey: string) => {
+      const service = services.get(serviceKey);
+      if (!service) {
+        throw new Error(`Service ${serviceKey} not found`);
+      }
+      return service;
+    },
   };
 }
 
