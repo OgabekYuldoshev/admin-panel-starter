@@ -1,14 +1,16 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import { App } from './App.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
 
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider } from "@mantine/core";
+import { App } from "./App.tsx";
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <MantineProvider>
-      <App />
-    </MantineProvider>
-  </StrictMode>,
-)
+const rootElement = document.getElementById("root") as HTMLElement;
+
+createRoot(rootElement).render(
+	<StrictMode>
+		<MantineProvider>
+			<App />
+		</MantineProvider>
+	</StrictMode>
+);
