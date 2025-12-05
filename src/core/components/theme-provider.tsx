@@ -1,11 +1,9 @@
-import type { ReactNode } from "react";
 import "@mantine/core/styles.css";
 import { MantineProvider } from "@mantine/core";
 
-export interface ThemeProviderProps {
-	children: ReactNode;
+interface ThemeProviderProps {
+    children: React.ReactNode;
 }
-
 export function ThemeProvider({ children }: ThemeProviderProps) {
-	return <MantineProvider>{children}</MantineProvider>;
+    return <MantineProvider>{children}</MantineProvider>;
 }
