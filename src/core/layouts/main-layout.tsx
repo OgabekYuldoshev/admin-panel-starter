@@ -1,7 +1,9 @@
-import { AppShell, Burger, Group, Text } from "@mantine/core";
+import { AppShell, Burger, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { Outlet } from "react-router";
 import { AppLogo } from "../components/app-logo";
 import { ProfileDropdown } from "../components/profile-dropdown";
+import { Sidebar } from "../components/sidebar";
 
 export function MainLayout() {
     const [opened, { toggle }] = useDisclosure();
@@ -29,13 +31,11 @@ export function MainLayout() {
                     />
                 </Group>
             </AppShell.Header>
-            <AppShell.Navbar p="md">
-                Navbar is collapsed on mobile at sm breakpoint. At that point it is no longer offset by
-                padding in the main element and it takes the full width of the screen when opened.
+            <AppShell.Navbar>
+                <Sidebar />
             </AppShell.Navbar>
             <AppShell.Main>
-                <Text>This is the main section, your app content here.</Text>
-                <Text>Layout used in most cases – Navbar and Header with fixed position</Text>
+                <Outlet />
             </AppShell.Main>
         </AppShell>
     )

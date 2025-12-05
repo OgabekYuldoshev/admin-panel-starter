@@ -1,0 +1,46 @@
+.navLink {
+	display: block;
+	text-decoration: none;
+	color: inherit;
+	border-radius: var(--mantine-radius-md);
+	transition: all 0.2s ease;
+
+	&:hover {
+		.navButton {
+			background-color: var(--mantine-color-gray-1);
+
+			[data-mantine-color-scheme="dark"] & {
+				background-color: var(--mantine-color-dark-6);
+			}
+		}
+	}
+
+	&.active {
+		.navButton {
+			background-color: var(--mantine-color-blue-1);
+			color: var(--mantine-color-blue-7);
+
+			[data-mantine-color-scheme="dark"] & {
+				background-color: var(--mantine-color-blue-9);
+				color: var(--mantine-color-blue-4);
+			}
+
+			&:hover {
+				background-color: var(--mantine-color-blue-2);
+
+				[data-mantine-color-scheme="dark"] & {
+					background-color: var(--mantine-color-blue-8);
+				}
+			}
+		}
+	}
+}
+
+.navButton {
+	padding: 8px 12px;
+	border-radius: var(--mantine-radius-md);
+	width: 100%;
+	text-align: left;
+	transition: all 0.2s ease;
+}
+
