@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { builderConfig } from "./config";
-import { AdminBuilder } from "./core";
+import { AdminDashboard } from "./core2";
 
 const rootElement = document.getElementById("root");
 
@@ -11,6 +10,6 @@ if (!rootElement) {
 
 createRoot(rootElement).render(
 	<StrictMode>
-		<AdminBuilder config={builderConfig} />
+		<AdminDashboard />
 	</StrictMode>,
 );
