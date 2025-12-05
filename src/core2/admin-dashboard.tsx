@@ -1,8 +1,16 @@
 import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
 import { ThemeProvider } from "../core/components/theme-provider";
 import { LoginPage, type SocialProvider } from "./components";
+import type { AdminConfig } from "./config";
+import { useState } from "react";
+import { AppStateContext, createAppState } from "./state";
 
-export function AdminDashboard() {
+interface AdminDashboardProps {
+	config: AdminConfig;
+}
+
+export function AdminDashboard({ config }: AdminDashboardProps) {
+	const [appState] = useState(() => createAppState(config));
 	const socialProviders: SocialProvider[] = [
 		{
 			name: "Google",
@@ -23,14 +31,15 @@ export function AdminDashboard() {
 	];
 
 	return (
-		<ThemeProvider>
-			<LoginPage
-				onLogin={async (data) => {
-					console.log("Login:", data);
-					// Login logikasini bu yerda yozing
-				}}
-				socialProviders={socialProviders}
-			/>
-		</ThemeProvider>
+		<AppStateContext.Provider value={appState}>
+			<ThemeProvider>
+				<LoginPage
+					onLogin={async (data) => {
+						console.log("Login:", data);
+					}}
+					socialProviders={socialProviders}
+				/>
+			</ThemeProvider>
+		</AppStateContext.Provider>
 	);
 }
